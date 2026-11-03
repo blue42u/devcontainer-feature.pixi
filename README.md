@@ -15,7 +15,7 @@ This is a small repository to repackage [Pixi](https://pixi.prefix.dev) as a reu
 {
   // ...
   "features": {
-    "gchr.io/blue42u/devcontainer-feature.pixi:latest": {}
+    "ghcr.io/blue42u/devcontainer-features/pixi:latest": {}
   }
 }
 ```
@@ -27,7 +27,7 @@ To select a specific version of Pixi to install instead of the latest:
 {
   // ...
   "features": {
-    "gchr.io/blue42u/devcontainer-feature.pixi:0.83.0": {}
+    "ghcr.io/blue42u/devcontainer-features/pixi:0.83.0": {}
   }
 }
 ```
