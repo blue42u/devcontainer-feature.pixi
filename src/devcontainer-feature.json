@@ -1,0 +1,15 @@
+{
+  "id": "pixi",
+  "version": "@VERSION@",
+  "name": "Pixi environment manager",
+  "documentationURL": "https://pixi.prefix.dev/v@VERSION@/",
+  "licenseURL": "https://github.com/prefix-dev/pixi/blob/v@VERSION@/LICENSE",
+  "keywords": ["pixi", "package manager"],
+  "options": {
+    "updatePath": {
+      "description": "Update shell init scripts (.bashrc, config.fish, etc.) to add ~/.pixi/bin/",
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
