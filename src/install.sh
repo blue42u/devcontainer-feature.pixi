@@ -46,6 +46,7 @@ if [ "$UPDATEPATH" = "true" ]; then
     echo "export PATH=$1/.pixi/bin/:\"\$PATH\"" >> "$1"/.bashrc
     echo "export PATH=$1/.pixi/bin/:\"\$PATH\"" >> "$1"/.zshrc
     # set -gx PATH is used here for compatibility with Fish < 3.2.0 (which lacks fish_add_path)
+    mkdir -p "$1"/.config/fish/
     echo "set -gx PATH $1/.pixi/bin/ \$PATH" >> "$1"/.config/fish/config.fish
     echo "set path = ( $1/.pixi/bin/ \$path )" >> "$1"/.tcshrc
   }
