@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Pixi as a Devcontainer feature
 
-This is a small repository to repackage [Pixi](https://pixi.prefix.dev) as a reusable [Devcontainer](https://containers.dev/) feature.
+This is a small repository to repackage [Pixi](https://pixi.prefix.dev)'s standalone binaries as a reusable [Devcontainer](https://containers.dev/) feature.
 
 ## Why?
 
