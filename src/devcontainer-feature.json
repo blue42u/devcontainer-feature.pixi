@@ -6,6 +6,11 @@
   "licenseURL": "https://github.com/prefix-dev/pixi/blob/v@VERSION@/LICENSE",
   "keywords": ["pixi", "package manager"],
   "options": {
+    "overwrite": {
+      "description": "Overwrite any existing /usr/bin/pixi",
+      "type": "boolean",
+      "default": false
+    },
     "updatePath": {
       "description": "Update shell init scripts (.bashrc, config.fish, etc.) to add ~/.pixi/bin/",
       "type": "boolean",

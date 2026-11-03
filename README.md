@@ -8,6 +8,12 @@ SPDX-License-Identifier: CC-BY-4.0
 
 This is a small repository to repackage [Pixi](https://pixi.prefix.dev) as a reusable [Devcontainer](https://containers.dev/) feature.
 
+## Why?
+
+- **No dependencies**. At all. Compatible with every container image under the sun, including the weird ones.
+- **No extras**. You get exactly what you asked for and nothing more.
+- **No version skew**. The version is where the version should be, not an option added below.
+
 ## Usage
 
 ```jsonc
@@ -36,4 +42,5 @@ To select a specific version of Pixi to install instead of the latest:
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| `updatePath` | Update shell init scripts (.bashrc, config.fish, etc.) to add ~/.pixi/bin/ | boolean | `true` |
+| `overwrite` | Overwrite any existing `/usr/bin/pixi` | boolean | `false` |
+| `updatePath` | Update shell init scripts (.bashrc, config.fish, etc.) to add `~/.pixi/bin/` to the default PATH | boolean | `true` |

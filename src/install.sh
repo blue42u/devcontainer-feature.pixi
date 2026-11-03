@@ -28,16 +28,12 @@ if ! [ -e "dist/pixi-$archspec" ]; then
   exit 1
 fi
 
-# Install the binary for the container user and the remote user
-install() {
-  mkdir -p "$2"/.pixi/bin || return $?
-  cp "dist/pixi-$archspec" "$2"/.pixi/bin/pixi || return $?
-  chmod +x "$2"/.pixi/bin/pixi || return $?
-  chown "$1":"$1" "$2"/.pixi/bin/pixi || chown "$1" "$2"/.pixi/bin/pixi || return $?
-}
-install "$_CONTAINER_USER" "$_CONTAINER_USER_HOME"
-if [ "$_CONTAINER_USER" != "$_REMOTE_USER" ]; then
-  install "$_REMOTE_USER" "$_REMOTE_USER_HOME"
+# Install the binary a global location
+if [ -e /usr/bin/pixi ] && [ "$OVERWRITE" != "true" ]; then
+  echo "/usr/bin/pixi already present, not overwriting"
+else
+  cp dist/pixi-$archspec /usr/bin/pixi
+  chmod +x /usr/bin/pixi
 fi
 
 # Update the shell init scripts to add $HOME/.pixi/bin/ to the PATH
