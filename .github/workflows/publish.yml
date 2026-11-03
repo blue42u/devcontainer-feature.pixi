@@ -184,12 +184,19 @@ jobs:
           fi
 
           # Reproducible tarball: stable order, ownership and timestamps.
-          # The layer file name is mandated by the distribution spec.
+          # The layer file name is mandated by the distribution spec. Despite the
+          # .tgz extension the layer must be an *uncompressed* tar, as its media
+          # type (application/vnd.devcontainers.layer.v1+tar) says; some clients
+          # (e.g. Zed) do not decompress it.
           mtime="$(git log -1 --format=%ct)"
-          (cd build && tar --create --sort=name --owner=0 --group=0 --numeric-owner \
-            --mtime="@$mtime" devcontainer-feature.json install.sh dist LICENSES) \
-            | gzip -9n > "devcontainer-feature-$FEATURE_ID.tgz"
-          tar -tvzf "devcontainer-feature-$FEATURE_ID.tgz"
+          tar --create --file "devcontainer-feature-$FEATURE_ID.tgz" --directory build \
+            --sort=name --owner=0 --group=0 --numeric-owner --mtime="@$mtime" \
+            devcontainer-feature.json install.sh dist LICENSES
+          if gzip --test "devcontainer-feature-$FEATURE_ID.tgz" 2>/dev/null; then
+            echo "::error::Feature layer must not be gzip-compressed"
+            exit 1
+          fi
+          tar -tvf "devcontainer-feature-$FEATURE_ID.tgz"
 
           # Manifest config: an empty JSON object, as produced by the reference
           # implementation.
