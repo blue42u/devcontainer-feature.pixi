@@ -13,7 +13,7 @@ aarch64)
   archspec=aarch64-unknown-linux-musl
   ;;
 riscv64)
-  archspec=riscv64gc-unknown-linux-musl
+  archspec=riscv64gc-unknown-linux-gnu
   ;;
 *)
   echo "Unsupported architecture: $(uname -m)"
@@ -30,9 +30,10 @@ fi
 
 # Install the binary for the container user and the remote user
 install() {
+  mkdir -p "$2"/.pixi/bin/ || return $?
   cp "dist/pixi-$archspec" "$2"/.pixi/bin/pixi || return $?
   chmod +x "$2"/.pixi/bin/pixi || return $?
-  chown "$1":"$1" "$2"/.pixi/bin/pixi || return $?
+  chown "$1":"$1" "$2"/.pixi/bin/pixi || chown "$1" "$2"/.pixi/bin/pixi || return $?
 }
 install "$_CONTAINER_USER" "$_CONTAINER_USER_HOME"
 if [ "$_CONTAINER_USER" != "$_REMOTE_USER" ]; then
